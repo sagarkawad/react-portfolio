@@ -23,7 +23,7 @@ const Contact = () => {
     }
     setLoading(true);
     try {
-    const response = await axios.post("http://localhost:3000/contact", {
+    const response = await axios.post("https://react-portfolio-8144.onrender.com/contact", {
       name,
       email,
       message,
