@@ -52,7 +52,7 @@ app.use(cors())
 app.use(express.json());
 
 // Set the port number for the server
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Define a route for the root path ('/')
 app.get('/', (req, res) => {
