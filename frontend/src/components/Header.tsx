@@ -1,12 +1,15 @@
 import React from 'react';
 import { Github, Linkedin } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import { MenuButton } from './navigation/MenuButton';
 import { motion, AnimatePresence } from 'framer-motion';
+import { NavLink } from './navigation/NavLink';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
+
+  
 
   const isActive = (path: string) => {
     if (path === '/') {
@@ -16,31 +19,33 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+    <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm" onClick={() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }}>
       <nav className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-gray-800">
+          <NavLink href="/#home" className="text-2xl font-bold text-gray-800">
             SK
-          </Link>
+          </NavLink>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              to="/"
+            <NavLink
+              href="/"
               className={`text-gray-600 hover:text-gray-900 ${
                 isActive('/') ? 'text-blue-600' : ''
               }`}
             >
               About
-            </Link>
-            <Link
-              to="/blog"
+            </NavLink>
+            <NavLink
+              href="/blog"
               className={`text-gray-600 hover:text-gray-900 ${
                 isActive('/blog') ? 'text-blue-600' : ''
               }`}
             >
               Blog
-            </Link>
+            </NavLink>
             <div className="flex space-x-4">
               <motion.a
                 href="https://github.com"
@@ -78,24 +83,26 @@ const Header = () => {
               className="md:hidden overflow-hidden"
             >
               <div className="py-4 space-y-4">
-                <Link
-                  to="/"
+                <NavLink
+                  href="/"
                   className={`block text-gray-600 hover:text-gray-900 ${
                     isActive('/') ? 'text-blue-600' : ''
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
+                 
+                  setIsMenuOpen={setIsMenuOpen}
                 >
                   About
-                </Link>
-                <Link
-                  to="/blog"
+                </NavLink>
+                <NavLink
+                  href="/blog"
                   className={`block text-gray-600 hover:text-gray-900 ${
                     isActive('/blog') ? 'text-blue-600' : ''
                   }`}
-                  onClick={() => setIsMenuOpen(false)}
+                 
+                  setIsMenuOpen={setIsMenuOpen}
                 >
                   Blog
-                </Link>
+                </NavLink>
               </div>
             </motion.div>
           )}

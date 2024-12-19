@@ -2,6 +2,7 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import {Schema, model, connect} from "mongoose";
+import cors from "cors";
 
 require('dotenv').config(); // Load .env file
 
@@ -22,7 +23,7 @@ const peopleSchema = new Schema<IPeople>({
 // 3. Create a Model.
 const People = model<IPeople>('People', peopleSchema);
 
-async function run(name: string, email: string, message: string) {
+async function run(name: string, email: string, message: string, res: Response) {
    try {
     // 4. Connect to MongoDB
     await connect(process.env.DATABASE_URL as string);
@@ -35,14 +36,18 @@ async function run(name: string, email: string, message: string) {
     await user.save();
   
     console.log(user.email); // 'bill@initech.com'
+    res.send("successfuly created user message") 
     } catch(e) {
         console.log("error - ", e);
+        res.status(400).send(`error - ${e}`) 
     }
 }
 
 // Create an Express application
 const app = express();
 
+//cors
+app.use(cors())
 // Add middleware to parse JSON request bodies
 app.use(express.json());
 
@@ -56,7 +61,8 @@ app.get('/', (req, res) => {
   
 });
 
-app.post("/contact", (req, res) => {
+app.post("/contact", async (req, res) => {
+    console.log("here")
    
         const {name, email, message} = req.body;
     
@@ -64,7 +70,8 @@ app.post("/contact", (req, res) => {
             res.status(400).json({ message: 'Name, Email and Message are required' });
           }
     
-        run(name, email, message);     
+        await run(name, email, message, res);
+            
 })
 
 // Start the server and listen on the specified port

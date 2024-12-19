@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from './navigation/NavLink';
 
 const Hero = () => {
