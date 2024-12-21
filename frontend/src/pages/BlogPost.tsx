@@ -1,8 +1,14 @@
-import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { format } from 'date-fns';
 import { FadeInView } from '../components/animations/FadeInView';
+import CodeDisplay from '../CodeDisplay';
+
+const dedent = (code: string) => {
+  const lines = code.split('\n').filter((line) => line.trim() !== '');
+  const minIndent = Math.min(...lines.map((line) => line.match(/^\s*/)?.[0].length || 0));
+  return lines.map((line) => line.slice(minIndent)).join('\n');
+};
 
 const blogPosts = {
   'getting-started-with-react': {
@@ -11,36 +17,56 @@ const blogPosts = {
     readTime: '8 min read',
     tags: ['React', 'Web Development', 'JavaScript'],
     coverImage: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000',
-    content: `
-      React has revolutionized the way we build web applications. In this comprehensive guide,
-      we'll explore the core concepts of React and how to get started with building your first application.
+    content: [
+      {
+        type: 'text',
+        value: `React has revolutionized the way we build web applications. In this comprehensive guide,
+        we'll explore the core concepts of React and how to get started with building your first application.`,
+      },
+      {
+        type: 'text',
+        value: `Why React?
 
-      ## Why React?
+        React's component-based architecture makes it easy to build and maintain large applications.
+        Its virtual DOM implementation ensures optimal performance, while the vast ecosystem of libraries
+        and tools makes development a breeze.`,
+      },
+      {
+        type: 'text',
+        value: `Getting Started
 
-      React's component-based architecture makes it easy to build and maintain large applications.
-      Its virtual DOM implementation ensures optimal performance, while the vast ecosystem of libraries
-      and tools makes development a breeze.
+        First, let's create a new React application using Vite:`,
+      },
+      {
+        type: 'code',
+        value: `
+        npm create vite@latest my-react-app -- --template react-ts
+        cd my-react-app
+        npm install
+        `,
+        language: 'bash',
+      },
+      {
+        type: 'text',
+        value: `Core Concepts
 
-      ## Getting Started
+        1. Components
+        2. Props
+        3. State
+        4. Hooks
+        5. Effects
 
-      First, let's create a new React application using Vite:
-
-      \`\`\`bash
-      npm create vite@latest my-react-app -- --template react-ts
-      cd my-react-app
-      npm install
-      \`\`\`
-
-      ## Core Concepts
-
-      1. Components
-      2. Props
-      3. State
-      4. Hooks
-      5. Effects
-
-      Stay tuned for more detailed explanations of each concept!
-    `,
+        Stay tuned for more detailed explanations of each concept!`,
+      },
+      {
+        type: 'code',
+        value: `
+        console.log('hello world');
+        console.log('This is a multi-line code example.');
+        `,
+        language: 'javascript',
+      },
+    ],
   },
   // Add other blog posts here
 };
@@ -107,11 +133,21 @@ const BlogPost = () => {
             </div>
 
             <div className="prose prose-lg max-w-none">
-              {post.content.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
+              {post.content.map((block, index) => {
+                if (block.type === 'code') {
+                  return (
+                    <CodeDisplay
+                      key={index}
+                      code={dedent(block.value)}
+                      language={block.language}
+                    />
+                  );
+                }
+                if (block.type === 'text') {
+                  return block.value.trim().split("\n").map((paragraph, index) => (paragraph.trim() === "" ? <br key={index}/> : <p key={index} className="mb-1">{paragraph}</p>))
+                }
+                return null;
+              })}
             </div>
           </div>
         </FadeInView>
