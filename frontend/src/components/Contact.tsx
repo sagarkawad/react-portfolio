@@ -45,7 +45,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-20 bg-white relative">
-       {loading ? <LoadingSpinner/> : null}
+       
       {popUp ? <PopUp title={popUpMessage} setPopUp={setPopUp} popUp={popUp}/> : null}
       <div className="container mx-auto px-6">
         <h2 className="text-3xl font-bold text-center mb-16">Get In Touch</h2>
@@ -57,7 +57,7 @@ const Contact = () => {
                 <Mail className="w-6 h-6 text-blue-600" />
                 <div>
                   <h3 className="font-semibold mb-1">Email</h3>
-                  <p className="text-gray-600">contact@sagarkawad.com</p>
+                  <p className="text-gray-600">spkawad21@gmail.com</p>
                 </div>
               </div>
               
@@ -65,7 +65,7 @@ const Contact = () => {
                 <Phone className="w-6 h-6 text-blue-600" />
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <p className="text-gray-600">7030458738</p>
                 </div>
               </div>
               
@@ -73,7 +73,7 @@ const Contact = () => {
                 <MapPin className="w-6 h-6 text-blue-600" />
                 <div>
                   <h3 className="font-semibold mb-1">Location</h3>
-                  <p className="text-gray-600">San Francisco, CA</p>
+                  <p className="text-gray-600">Pune, Maharashtra</p>
                 </div>
               </div>
             </div>
@@ -126,13 +126,17 @@ const Contact = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 ></textarea>
               </div>
-              
+              <div>
               <button
+                disabled={loading}
                 onClick={handleSubmit}
-                className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors relative"
               >
+               
                 Send Message
               </button>
+              {loading ? <LoadingSpinner/> : null}
+              </div>
             </div>
           </div>
         </div>

@@ -4,29 +4,85 @@ import { ExternalLink, Github } from 'lucide-react';
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce platform built with Next.js, Node.js, and PostgreSQL',
+      title: 'Online Bicycle Store',
+      description: 'Online bicycle store to buy belt bicycles online',
       image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800',
-      technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Tailwind CSS'],
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com',
+      technologies: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', "Express"],
+      githubUrl: 'https://github.com/sagarkawad/blue-bikes',
+      liveUrl: 'https://becle.in',
     },
     {
-      title: 'Task Management App',
-      description: 'A mobile-first task management application with real-time updates',
+      title: 'Blue-Bikes Android App',
+      description: 'A mobile-first application for dealers to place bicycle orders to the manufacturer',
       image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91?auto=format&fit=crop&q=80&w=800',
-      technologies: ['React Native', 'Firebase', 'Redux'],
-      githubUrl: 'https://github.com',
+      technologies: ['React Native', 'Supabase', "Recoil"],
+      githubUrl: 'https://github.com/sagarkawad/bb-mobileapp',
       liveUrl: 'https://example.com',
     },
     {
-      title: 'Social Media Dashboard',
-      description: 'Analytics dashboard for social media metrics and engagement',
+      title: 'Minimalistic Personal Notion Web App',
+      description: 'A minimalistic polished task-list application which makes use of the browser local storage to save the tasks',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
-      githubUrl: 'https://github.com',
+      technologies: ['React', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/sagarkawad/notes',
+      liveUrl: 'https://mypersonalnotesapp.netlify.app/',
+    },
+    {
+      title: 'Expense Visualiser',
+      description: 'A minimalistic expense visualer to track expenses in a graphical format',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['React', 'Chart.js'],
+      githubUrl: 'https://github.com/sagarkawad/spend-calculator',
+      liveUrl: 'https://spend-calculator.netlify.app/',
+    },
+    {
+      title: 'Review Sentiment Analysis',
+      description: 'A python based application which scrapes data from book my show to calculate the user based rating of the movie. It creates an excel file, noting all the user reviews and finally calculating the final score of the movie',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['Python', 'Selenium', "Tkinter", "Natural Language Processing Toolkit"],
+      githubUrl: 'https://github.com/sagarkawad/bookmyshow',
+      liveUrl: 'https://youtu.be/a1jlVGdpMtY?si=AhI-bEenDhVjO99b',
+    },
+    {
+      title: 'Excel-Extractor',
+      description: 'A python based application which scrapes data from book my show to calculate the user based rating of the movie',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['Python', 'Selenium', "Tkinter"],
+      githubUrl: 'https://github.com/sagarkawad/excel-extractor',
       liveUrl: 'https://example.com',
     },
+    {
+      title: 'Classic XOXO',
+      description: 'React based Tic-Tac-Toe',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['React'],
+      githubUrl: 'https://github.com/sagarkawad/tic-tac-toe',
+      liveUrl: 'https://tic-tac-toexo.netlify.app/',
+    },
+    {
+      title: 'Time Almost Final CountDown',
+      description: 'React based Time Guessing Game',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['React'],
+      githubUrl: 'https://github.com/sagarkawad/time-guess',
+      liveUrl: 'https://time-guess.netlify.app/',
+    },
+    {
+      title: 'Wavy Music Player',
+      description: 'React based music player',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['React'],
+      githubUrl: 'https://github.com/',
+      liveUrl: 'https://wavymusic.netlify.app/',
+    },
+    {
+      title: 'Go chat app',
+      description: 'Shell based chat app written in go',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      technologies: ['Go', "P2P"],
+      githubUrl: 'https://github.com/sagarkawad/p2p-go-chat-app',
+    },
+
   ];
 
   return (
@@ -65,7 +121,7 @@ const Projects = () => {
                     <Github className="w-5 h-5 mr-2" />
                     Code
                   </a>
-                  <a 
+                  {project.liveUrl ?  <a 
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -73,7 +129,7 @@ const Projects = () => {
                   >
                     <ExternalLink className="w-5 h-5 mr-2" />
                     Live Demo
-                  </a>
+                  </a> : null}
                 </div>
               </div>
             </div>
