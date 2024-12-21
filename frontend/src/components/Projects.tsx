@@ -6,7 +6,7 @@ const Projects = () => {
     {
       title: 'Online Bicycle Store',
       description: 'Online bicycle store to buy belt bicycles online',
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/ec/6e/0e/ec6e0e48c37584db24040141d2cadd82.jpg',
       technologies: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', "Express"],
       githubUrl: 'https://github.com/sagarkawad/blue-bikes',
       liveUrl: 'https://becle.in',
@@ -14,7 +14,7 @@ const Projects = () => {
     {
       title: 'Blue-Bikes Android App',
       description: 'A mobile-first application for dealers to place bicycle orders to the manufacturer',
-      image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/6c/c6/de/6cc6de7a0963a15702b1f17c94fd0d90.jpg',
       technologies: ['React Native', 'Supabase', "Recoil"],
       githubUrl: 'https://github.com/sagarkawad/bb-mobileapp',
       liveUrl: 'https://example.com',
@@ -22,7 +22,7 @@ const Projects = () => {
     {
       title: 'Minimalistic Personal Notion Web App',
       description: 'A minimalistic polished task-list application which makes use of the browser local storage to save the tasks',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/76/90/02/769002c3bd6e63da95197881036711b7.jpg',
       technologies: ['React', 'Tailwind CSS'],
       githubUrl: 'https://github.com/sagarkawad/notes',
       liveUrl: 'https://mypersonalnotesapp.netlify.app/',
@@ -30,7 +30,7 @@ const Projects = () => {
     {
       title: 'Expense Visualiser',
       description: 'A minimalistic expense visualer to track expenses in a graphical format',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/5d/ff/91/5dff91323778b48c95dca41c811a85af.jpg',
       technologies: ['React', 'Chart.js'],
       githubUrl: 'https://github.com/sagarkawad/spend-calculator',
       liveUrl: 'https://spend-calculator.netlify.app/',
@@ -38,7 +38,7 @@ const Projects = () => {
     {
       title: 'Review Sentiment Analysis',
       description: 'A python based application which scrapes data from book my show to calculate the user based rating of the movie. It creates an excel file, noting all the user reviews and finally calculating the final score of the movie',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/2c/f1/85/2cf185d739d4be85b1dd024efb2fb796.jpg',
       technologies: ['Python', 'Selenium', "Tkinter", "Natural Language Processing Toolkit"],
       githubUrl: 'https://github.com/sagarkawad/bookmyshow',
       liveUrl: 'https://youtu.be/a1jlVGdpMtY?si=AhI-bEenDhVjO99b',
@@ -46,7 +46,7 @@ const Projects = () => {
     {
       title: 'Excel-Extractor',
       description: 'A python based application which scrapes data from book my show to calculate the user based rating of the movie',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/8a/eb/48/8aeb48a0eed3ac21b4f8a5d100383848.jpg',
       technologies: ['Python', 'Selenium', "Tkinter"],
       githubUrl: 'https://github.com/sagarkawad/excel-extractor',
       liveUrl: 'https://example.com',
@@ -54,7 +54,7 @@ const Projects = () => {
     {
       title: 'Classic XOXO',
       description: 'React based Tic-Tac-Toe',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/38/1f/77/381f7740895c1ee7b3ecaac5c19a1b26.jpg',
       technologies: ['React'],
       githubUrl: 'https://github.com/sagarkawad/tic-tac-toe',
       liveUrl: 'https://tic-tac-toexo.netlify.app/',
@@ -62,7 +62,7 @@ const Projects = () => {
     {
       title: 'Time Almost Final CountDown',
       description: 'React based Time Guessing Game',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/16/f4/52/16f4528b5a1072b2b08b7e16ca29d010.jpg',
       technologies: ['React'],
       githubUrl: 'https://github.com/sagarkawad/time-guess',
       liveUrl: 'https://time-guess.netlify.app/',
@@ -70,7 +70,7 @@ const Projects = () => {
     {
       title: 'Wavy Music Player',
       description: 'React based music player',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/29/21/40/292140dd6c5cbee0742a4d4866f6d375.jpg',
       technologies: ['React'],
       githubUrl: 'https://github.com/',
       liveUrl: 'https://wavymusic.netlify.app/',
@@ -78,7 +78,7 @@ const Projects = () => {
     {
       title: 'Go chat app',
       description: 'Shell based chat app written in go',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
+      image: 'https://i.pinimg.com/736x/7e/f0/3e/7ef03e0bd7393c24085228219e1fffd4.jpg',
       technologies: ['Go', "P2P"],
       githubUrl: 'https://github.com/sagarkawad/p2p-go-chat-app',
     },

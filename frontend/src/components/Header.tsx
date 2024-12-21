@@ -48,7 +48,7 @@ const Header = () => {
             </NavLink>
             <div className="flex space-x-4">
               <motion.a
-                href="https://github.com"
+                href="https://github.com/sagarkawad"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
@@ -57,7 +57,7 @@ const Header = () => {
                 <Github className="w-5 h-5" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/sagar-kawad-337474206/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
