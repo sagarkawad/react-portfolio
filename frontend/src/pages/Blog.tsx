@@ -13,24 +13,6 @@ const blogPosts = [
     tags: ['React', 'Web Development', 'JavaScript'],
     coverImage: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000',
   },
-  {
-    slug: 'mobile-app-development-tips',
-    title: 'Essential Tips for Mobile App Development',
-    excerpt: 'Discover key insights and best practices for building successful mobile applications across different platforms.',
-    date: '2024-03-10',
-    readTime: '6 min read',
-    tags: ['Mobile Development', 'React Native', 'iOS', 'Android'],
-    coverImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1000',
-  },
-  {
-    slug: 'mastering-golang',
-    title: 'Mastering Golang: From Basics to Advanced Concepts',
-    excerpt: 'A deep dive into Go programming language features, best practices, and advanced concepts for building efficient applications.',
-    date: '2024-03-05',
-    readTime: '10 min read',
-    tags: ['Go', 'Backend Development', 'Programming'],
-    coverImage: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=1000',
-  },
 ];
 
 const Blog = () => {

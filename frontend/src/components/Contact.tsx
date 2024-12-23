@@ -23,7 +23,7 @@ const Contact = () => {
     }
     setLoading(true);
     try {
-    const response = await axios.post("https://react-portfolio-8144.onrender.com/contact", {
+    const response = await axios.post("https://akamai-nanode.duckdns.org/contact", {
       name,
       email,
       message,
