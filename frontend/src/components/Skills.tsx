@@ -3,10 +3,10 @@ import { Code2, Database, Layout, Smartphone } from 'lucide-react';
 const Skills = () => {
   const skills = {
     languages: ['HTML', 'CSS', 'JavaScript', 'Go', "Python"],
-    frontend: ['React', "React Native", 'Next.js', 'Tailwind CSS'],
+    frontend: ['React', 'Next.js', 'Tailwind CSS'],
     backend: ['Node.js', 'Express.js'],
     databases: ['MongoDB', 'PostgreSQL'],
-    mobile: ['React Native', 'Android', 'iOS'],
+    mobile: ['React Native', "Supabase", "Firebase"],
   };
 
   return (

@@ -20,8 +20,7 @@ const blogPosts = {
     content: [
       {
         type: 'text',
-        value: `React has revolutionized the way we build web applications. In this comprehensive guide,
-        we'll explore the core concepts of React and how to get started with building your first application.`,
+        value: `React has revolutionized the way we build web applications. In this comprehensive guide, we'll explore the core concepts of React and how to get started with building your first application.`,
       },
       {
         type: 'text',
