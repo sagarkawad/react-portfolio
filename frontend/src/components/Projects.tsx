@@ -20,6 +20,13 @@ const Projects = () => {
       liveUrl: 'https://example.com',
     },
     {
+      title: 'React DashBoard',
+      description: 'A dashoard made using React Ts for the admin to manage cycle orders.',
+      image: 'https://i.pinimg.com/736x/f3/a5/85/f3a585bd3e8150a017d789de6edd55ad.jpg',
+      technologies: ['React', 'Supabase'],
+      githubUrl: 'https://github.com/sagarkawad/react-dashboard',
+    },
+    {
       title: 'Minimalistic Personal Notion Web App',
       description: 'A minimalistic polished task-list application which makes use of the browser local storage to save the tasks',
       image: 'https://i.pinimg.com/736x/76/90/02/769002c3bd6e63da95197881036711b7.jpg',
