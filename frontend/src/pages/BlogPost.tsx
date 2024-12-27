@@ -1,14 +1,13 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar, Tag } from 'lucide-react';
 import { format } from 'date-fns';
 import { FadeInView } from '../components/animations/FadeInView';
-import CodeDisplay from '../CodeDisplay';
-
-const dedent = (code: string) => {
-  const lines = code.split('\n').filter((line) => line.trim() !== '');
-  const minIndent = Math.min(...lines.map((line) => line.match(/^\s*/)?.[0].length || 0));
-  return lines.map((line) => line.slice(minIndent)).join('\n');
-};
+import ReactMarkdown from 'react-markdown';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+// Import markdown file as a string
+import gettingStartedWithReact from '../content/getting-started-with-react.md?raw';
 
 const blogPosts = {
   'getting-started-with-react': {
@@ -17,55 +16,7 @@ const blogPosts = {
     readTime: '8 min read',
     tags: ['React', 'Web Development', 'JavaScript'],
     coverImage: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000',
-    content: [
-      {
-        type: 'text',
-        value: `React has revolutionized the way we build web applications. In this comprehensive guide, we'll explore the core concepts of React and how to get started with building your first application.`,
-      },
-      {
-        type: 'text',
-        value: `Why React?
-
-        React's component-based architecture makes it easy to build and maintain large applications.
-        Its virtual DOM implementation ensures optimal performance, while the vast ecosystem of libraries
-        and tools makes development a breeze.`,
-      },
-      {
-        type: 'text',
-        value: `Getting Started
-
-        First, let's create a new React application using Vite:`,
-      },
-      {
-        type: 'code',
-        value: `
-        npm create vite@latest my-react-app -- --template react-ts
-        cd my-react-app
-        npm install
-        `,
-        language: 'bash',
-      },
-      {
-        type: 'text',
-        value: `Core Concepts
-
-        1. Components
-        2. Props
-        3. State
-        4. Hooks
-        5. Effects
-
-        Stay tuned for more detailed explanations of each concept!`,
-      },
-      {
-        type: 'code',
-        value: `
-        console.log('hello world');
-        console.log('This is a multi-line code example.');
-        `,
-        language: 'javascript',
-      },
-    ],
+    content: gettingStartedWithReact, // Use the imported markdown content
   },
   // Add other blog posts here
 };
@@ -73,6 +24,11 @@ const blogPosts = {
 const BlogPost = () => {
   const { slug } = useParams();
   const post = slug ? blogPosts[slug] : null;
+
+  useEffect(() => {
+    // Scroll to the top of the page when the component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!post) {
     return (
@@ -132,21 +88,32 @@ const BlogPost = () => {
             </div>
 
             <div className="prose prose-lg max-w-none">
-              {post.content.map((block, index) => {
-                if (block.type === 'code') {
-                  return (
-                    <CodeDisplay
-                      key={index}
-                      code={dedent(block.value)}
-                      language={block.language}
-                    />
-                  );
-                }
-                if (block.type === 'text') {
-                  return block.value.trim().split("\n").map((paragraph, index) => (paragraph.trim() === "" ? <br key={index}/> : <p key={index} className="mb-1">{paragraph}</p>))
-                }
-                return null;
-              })}
+              <ReactMarkdown
+                components={{
+                  h1: ({ ...props }) => <h1 className="text-3xl font-bold mb-4" {...props} />,
+                  h2: ({  ...props }) => <h2 className="text-2xl font-bold mb-3" {...props} />,
+                  h3: ({  ...props }) => <h3 className="text-xl font-bold mb-2" {...props} />,
+                  code({ inline, className, children, ...props }) {
+                    const match = /language-(\w+)/.exec(className || '');
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        style={solarizedlight}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className={className ? className : ''} {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
           </div>
         </FadeInView>
