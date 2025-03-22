@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="#F3F4F6" />
+  
+  <!-- Book -->
+  <path d="M176 160H336C345 160 352 167 352 176V336C352 345 345 352 336 352H176C167 352 160 345 160 336V176C160 167 167 160 176 160Z" fill="#E5E7EB"/>
+  <path d="M176 160H336C345 160 352 167 352 176V336C345 352 336 352 176 352C167 352 160 345 160 336V176C160 167 167 160 176 160Z" fill="#D1D5DB"/>
+  
+  <!-- Lines representing text -->
+  <rect x="192" y="192" width="128" height="8" rx="4" fill="#9CA3AF"/>
+  <rect x="192" y="216" width="96" height="8" rx="4" fill="#9CA3AF"/>
+  <rect x="192" y="240" width="112" height="8" rx="4" fill="#9CA3AF"/>
+  <rect x="192" y="264" width="80" height="8" rx="4" fill="#9CA3AF"/>
+  
+  <!-- Pencil -->
+  <path d="M288 128L384 224L352 256L256 160L288 128Z" fill="#60A5FA"/>
+  <path d="M288 128L384 224L352 256L256 160L288 128Z" fill="#3B82F6"/>
+  <path d="M288 128L384 224L352 256L256 160L288 128Z" fill="#2563EB"/>
+  
+  <!-- Eraser -->
+  <path d="M352 256L384 224L416 256L384 288L352 256Z" fill="#EF4444"/>
+  
+  <!-- Sparkles -->
+  <path d="M96 96L112 112M112 96L96 112" stroke="#FCD34D" stroke-width="4" stroke-linecap="round"/>
+  <path d="M416 96L432 112M432 96L416 112" stroke="#FCD34D" stroke-width="4" stroke-linecap="round"/>
+  <path d="M96 416L112 432M112 416L96 432" stroke="#FCD34D" stroke-width="4" stroke-linecap="round"/>
+  <path d="M416 416L432 432M432 416L416 432" stroke="#FCD34D" stroke-width="4" stroke-linecap="round"/>
+</svg> 

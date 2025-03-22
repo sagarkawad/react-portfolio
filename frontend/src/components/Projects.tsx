@@ -9,7 +9,6 @@ const Projects = () => {
       image: 'https://i.pinimg.com/736x/ec/6e/0e/ec6e0e48c37584db24040141d2cadd82.jpg',
       technologies: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS', "Express"],
       githubUrl: 'https://github.com/sagarkawad/blue-bikes',
-      liveUrl: 'https://becle.in',
     },
     {
       title: 'Blue-Bikes Android App',
@@ -17,7 +16,6 @@ const Projects = () => {
       image: 'https://i.pinimg.com/736x/6c/c6/de/6cc6de7a0963a15702b1f17c94fd0d90.jpg',
       technologies: ['React Native', 'Supabase', "Recoil"],
       githubUrl: 'https://github.com/sagarkawad/bb-mobileapp',
-      liveUrl: 'https://example.com',
     },
     {
       title: 'React DashBoard',
@@ -56,7 +54,6 @@ const Projects = () => {
       image: 'https://i.pinimg.com/736x/8a/eb/48/8aeb48a0eed3ac21b4f8a5d100383848.jpg',
       technologies: ['Python', 'Selenium', "Tkinter"],
       githubUrl: 'https://github.com/sagarkawad/excel-extractor',
-      liveUrl: 'https://example.com',
     },
     {
       title: 'Classic XOXO',

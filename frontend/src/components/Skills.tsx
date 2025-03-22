@@ -4,7 +4,7 @@ const Skills = () => {
   const skills = {
     languages: ['HTML', 'CSS', 'JavaScript', 'Go', "Python"],
     frontend: ['React', 'Next.js', 'Tailwind CSS'],
-    backend: ['Node.js', 'Express.js'],
+    backend: ['Node.js', 'Express.js', "FastAPI"],
     databases: ['MongoDB', 'PostgreSQL'],
     mobile: ['React Native', "Supabase", "Firebase"],
   };

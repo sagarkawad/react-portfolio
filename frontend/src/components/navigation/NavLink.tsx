@@ -1,6 +1,6 @@
 import React from 'react';
 import { useScrollTo } from '../../hooks/useScrollTo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 interface NavLinkProps {
@@ -19,12 +19,20 @@ export const NavLink: React.FC<NavLinkProps> = ({
   setIsMenuOpen = null, 
 }) => {
   const scrollTo = useScrollTo();
+  const navigate = useNavigate();
   const targetId = href.replace('#', '');
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Set the browser navigation state
+    window.history.replaceState(
+      { ...window.history.state, usr: { fromBrowserNavigation: false } },
+      ''
+    );
+    navigate(href);
     scrollTo(targetId);
     if (setIsMenuOpen !== null) {
-    setIsMenuOpen(false);
+      setIsMenuOpen(false);
     }
   };
 

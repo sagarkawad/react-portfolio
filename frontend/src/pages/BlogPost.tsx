@@ -6,29 +6,24 @@ import { FadeInView } from '../components/animations/FadeInView';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
-// Import markdown file as a string
-import gettingStartedWithReact from '../content/getting-started-with-react.md?raw';
-
-const blogPosts = {
-  'getting-started-with-react': {
-    title: 'Getting Started with React: A Comprehensive Guide',
-    date: '2024-03-15',
-    readTime: '8 min read',
-    tags: ['React', 'Web Development', 'JavaScript'],
-    coverImage: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=1000',
-    content: gettingStartedWithReact, // Use the imported markdown content
-  },
-  // Add other blog posts here
-};
+import { getPostBySlug } from '../data/blogPosts';
 
 const BlogPost = () => {
   const { slug } = useParams();
-  const post = slug ? blogPosts[slug] : null;
+  const post = slug ? getPostBySlug(slug) : null;
 
   useEffect(() => {
-    // Scroll to the top of the page when the component mounts
-    window.scrollTo(0, 0);
+    // Only scroll to top if the navigation is not from browser back/forward buttons
+    const isBrowserNavigation = window.history.state?.usr?.fromBrowserNavigation;
+    if (!isBrowserNavigation) {
+      window.scrollTo(0, 0);
+    }
   }, []);
+
+  const handleBackClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.history.back();
+  };
 
   if (!post) {
     return (
@@ -47,13 +42,13 @@ const BlogPost = () => {
     <main className="pt-24 pb-20">
       <article className="container mx-auto px-6">
         <FadeInView>
-          <Link
-            to="/blog"
+          <button
+            onClick={handleBackClick}
             className="inline-flex items-center text-blue-600 hover:underline mb-8"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
-          </Link>
+          </button>
 
           <img
             src={post.coverImage}
