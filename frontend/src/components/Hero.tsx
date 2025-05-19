@@ -1,17 +1,51 @@
 import { NavLink } from './navigation/NavLink';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 
 const Hero = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-50, 50], [5, -5]);
+  const rotateY = useTransform(x, [-50, 50], [-5, 5]);
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-16 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-6">
+    <motion.section
+      id="home"
+      className="min-h-screen flex items-center pt-16 bg-gradient-to-br from-gray-50 to-gray-100"
+      style={{ perspective: 1000 }}
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        x.set(e.clientX - rect.left - rect.width / 2);
+        y.set(e.clientY - rect.top - rect.height / 2);
+      }}
+    >
+      <motion.div
+        className="container mx-auto px-6"
+        style={{ rotateX, rotateY }}
+        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <motion.h1
+            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             Hi, I'm <span className="text-blue-600">Sagar Kawad</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            Full Stack Developer specializing in Web & Mobile Development
-          </p>
-          <div className="flex justify-center space-x-4">
+          </motion.h1>
+          <motion.p
+            className="text-xl md:text-2xl text-gray-600 mb-8"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Full Stack Developer specialized in Web Development
+          </motion.p>
+          <motion.div
+            className="flex justify-center space-x-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             <NavLink
               href="#projects"
               className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -25,10 +59,10 @@ const Hero = () => {
             >
               Contact Me
             </NavLink>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

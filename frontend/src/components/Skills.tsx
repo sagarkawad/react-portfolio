@@ -15,7 +15,7 @@ const Skills = () => {
         <h2 className="text-3xl font-bold text-center mb-16">Skills & Technologies</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="p-6 bg-gray-50 rounded-lg">
+          <div className="p-6 bg-gray-50 rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
             <Code2 className="w-10 h-10 text-blue-600 mb-4" />
             <h3 className="text-xl font-semibold mb-4">Languages</h3>
             <ul className="space-y-2">
@@ -25,7 +25,7 @@ const Skills = () => {
             </ul>
           </div>
 
-          <div className="p-6 bg-gray-50 rounded-lg">
+          <div className="p-6 bg-gray-50 rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
             <Layout className="w-10 h-10 text-blue-600 mb-4" />
             <h3 className="text-xl font-semibold mb-4">Frontend</h3>
             <ul className="space-y-2">
@@ -35,7 +35,7 @@ const Skills = () => {
             </ul>
           </div>
 
-          <div className="p-6 bg-gray-50 rounded-lg">
+          <div className="p-6 bg-gray-50 rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
             <Database className="w-10 h-10 text-blue-600 mb-4" />
             <h3 className="text-xl font-semibold mb-4">Backend & Databases</h3>
             <ul className="space-y-2">
@@ -45,7 +45,7 @@ const Skills = () => {
             </ul>
           </div>
 
-          <div className="p-6 bg-gray-50 rounded-lg">
+          <div className="p-6 bg-gray-50 rounded-lg transition-transform transform hover:scale-105 hover:shadow-lg">
             <Smartphone className="w-10 h-10 text-blue-600 mb-4" />
             <h3 className="text-xl font-semibold mb-4">Mobile Development</h3>
             <ul className="space-y-2">

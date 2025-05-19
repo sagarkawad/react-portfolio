@@ -2,6 +2,7 @@ import Hero from '../components/Hero';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 import Contact from '../components/Contact';
+import Contributions from '../components/Contributions';
 import { FadeInView } from '../components/animations/FadeInView';
 import GitHubStats from '../components/GitHubStats';
 
@@ -21,6 +22,9 @@ const Home = () => {
         <GitHubStats username='sagarkawad' />
       </FadeInView>
       <FadeInView delay={0.4}>
+        <Contributions />
+      </FadeInView>
+      <FadeInView delay={0.5}>
         <Contact />
       </FadeInView>
     </main>

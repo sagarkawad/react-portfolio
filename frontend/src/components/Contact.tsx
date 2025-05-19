@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { FaXing, FaLinkedin, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
   return (
@@ -16,15 +17,7 @@ const Contact = () => {
                   <p className="text-gray-600">spkawad21@gmail.com</p>
                 </div>
               </div>
-              
-              {/* <div className="flex items-start space-x-4">
-                <Phone className="w-6 h-6 text-blue-600" />
-                <div>
-                  <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-gray-600">7030458738</p>
-                </div>
-              </div> */}
-              
+
               <div className="flex items-start space-x-4">
                 <MapPin className="w-6 h-6 text-blue-600" />
                 <div>
@@ -47,6 +40,8 @@ const Contact = () => {
             </div>
           </div>
         </div>
+
+       
       </div>
     </section>
   );
