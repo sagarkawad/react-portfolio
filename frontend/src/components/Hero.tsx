@@ -1,7 +1,5 @@
 import { NavLink } from './navigation/NavLink';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { useEffect } from 'react';
-import { throttle } from 'lodash';
 
 const Hero = () => {
   const x = useMotionValue(0);
@@ -9,33 +7,26 @@ const Hero = () => {
   const rotateX = useTransform(y, [-50, 50], [5, -5]);
   const rotateY = useTransform(x, [-50, 50], [-5, 5]);
 
-  useEffect(() => {
-    const handleOrientation = throttle((event: DeviceOrientationEvent) => {
-      if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
-        const newX = event.gamma * 2;
-        const newY = event.beta * 2;
-        x.set(newX);
-        y.set(newY);
-      }
-    }, 50); // Throttle to 20 updates per second
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set(e.clientX - rect.left - rect.width / 2);
+    y.set(e.clientY - rect.top - rect.height / 2);
+  };
 
-    window.addEventListener('deviceorientation', handleOrientation);
-
-    return () => {
-      window.removeEventListener('deviceorientation', handleOrientation);
-    };
-  }, [x, y]);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set(touch.clientX - rect.left - rect.width / 2);
+    y.set(touch.clientY - rect.top - rect.height / 2);
+  };
 
   return (
     <motion.section
       id="home"
       className="min-h-screen flex items-center pt-16 bg-gradient-to-br from-gray-50 to-gray-100"
       style={{ perspective: 1000 }}
-      onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        x.set(e.clientX - rect.left - rect.width / 2);
-        y.set(e.clientY - rect.top - rect.height / 2);
-      }}
+      onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
     >
       <motion.div
         className="container mx-auto px-6"
