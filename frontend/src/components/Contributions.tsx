@@ -35,7 +35,6 @@ const Contributions = () => {
   return (
     <section className="py-20 bg-gray-100">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-16">Contributions</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {pullRequests.slice(0, 6).map((pr, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
