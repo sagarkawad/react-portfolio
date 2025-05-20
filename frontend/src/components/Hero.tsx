@@ -1,6 +1,7 @@
 import { NavLink } from './navigation/NavLink';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useEffect } from 'react';
+import { throttle } from 'lodash';
 
 const Hero = () => {
   const x = useMotionValue(0);
@@ -9,15 +10,14 @@ const Hero = () => {
   const rotateY = useTransform(x, [-50, 50], [-5, 5]);
 
   useEffect(() => {
-    const handleOrientation = (event: DeviceOrientationEvent) => {
+    const handleOrientation = throttle((event: DeviceOrientationEvent) => {
       if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
-        // Map alpha, beta, gamma to x, y values
-        const newX = event.gamma * 2; // Scale gamma for x-axis
-        const newY = event.beta * 2;  // Scale beta for y-axis
+        const newX = event.gamma * 2;
+        const newY = event.beta * 2;
         x.set(newX);
         y.set(newY);
       }
-    };
+    }, 50); // Throttle to 20 updates per second
 
     window.addEventListener('deviceorientation', handleOrientation);
 
@@ -40,7 +40,7 @@ const Hero = () => {
       <motion.div
         className="container mx-auto px-6"
         style={{ rotateX, rotateY }}
-        transition={{ type: "spring", stiffness: 150, damping: 20 }}
+        transition={{ type: "spring", stiffness: 100, damping: 30 }}
       >
         <div className="max-w-4xl mx-auto text-center">
           <motion.h1
