@@ -25,7 +25,10 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <NavLink href="/#home" className="text-2xl font-bold text-gray-800">
-            SK
+            <div className="flex items-center">
+              <span className="inline-block w-1.5 h-1.5 mr-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(0,255,0,0.6),0_0_15px_rgba(0,255,0,0.4)]"></span>
+              SK
+            </div>
           </NavLink>
           
           {/* Desktop Navigation */}
