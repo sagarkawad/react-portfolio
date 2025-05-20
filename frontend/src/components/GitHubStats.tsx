@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { GraphQLClient, gql } from "graphql-request";
 import "tailwindcss/tailwind.css";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ type Props = {
   username: string;
 };
 
-const githubToken = import.meta.env.VITE_GITHUB_TOKEN; // Updated to use Vite's import.meta.env
+const githubToken = import.meta.env.VITE_GITHUB_TOKEN; 
 
 const client = new GraphQLClient("https://api.github.com/graphql", {
   headers: { Authorization: `Bearer ${githubToken}` },
@@ -37,7 +37,6 @@ const GITHUB_STATS_QUERY = gql`
   }
 `;
 
-// Define the expected structure of the response data
 interface GitHubStatsResponse {
   user: {
     contributionsCollection: {
@@ -57,6 +56,10 @@ interface GitHubStatsResponse {
 const GitHubStats: React.FC<Props> = ({ username }) => {
   const [stats, setStats] = useState<Stats>({ week: 0, month: 0, year: 0 });
   const [loading, setLoading] = useState<boolean>(true);
+  const [displayStats, setDisplayStats] = useState<Stats>({ week: 0, month: 0, year: 0 });
+  const [hasAnimated, setHasAnimated] = useState<boolean>(false);
+
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchGitHubStats = async () => {
@@ -69,7 +72,6 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
           data.user.contributionsCollection.contributionCalendar;
         const weeks = contributions.weeks;
 
-        // Calculate last week contributions
         const lastWeek = weeks[weeks.length - 2].contributionDays;
         const week = lastWeek.reduce(
           (total: number, day: { contributionCount: number }) =>
@@ -77,7 +79,6 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
           0
         );
 
-        // Calculate last month contributions (last 4 weeks)
         const lastMonth = weeks.slice(-4).flatMap(
           (week: { contributionDays: { contributionCount: number }[] }) =>
             week.contributionDays
@@ -88,7 +89,6 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
           0
         );
 
-        // Total contributions in the year
         const year = contributions.totalContributions;
 
         setStats({ week, month, year });
@@ -101,8 +101,48 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
     fetchGitHubStats();
   }, [username]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            console.log("Component is visible, starting animations...");
+            const incrementValue = (key: keyof Stats, target: number, duration: number) => {
+              let current = 0;
+              const step = target / (duration / 50);
+              const interval = setInterval(() => {
+                current += step;
+                setDisplayStats((prev) => ({ ...prev, [key]: Math.min(Math.round(current), target) }));
+                if (current >= target) {
+                  clearInterval(interval);
+                }
+              }, 50);
+            };
+
+            const animationDuration = 1000; 
+            incrementValue('week', stats.week, animationDuration);
+            incrementValue('month', stats.month, animationDuration);
+            incrementValue('year', stats.year, animationDuration);
+
+            setHasAnimated(true);
+            observer.disconnect(); 
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [stats, hasAnimated]);
+
   return (
-    <div className="p-8 lg:p-12 w-[100%] mx-auto bg-white rounded-lg shadow-md mt-10">
+    <div ref={ref} className="p-8 lg:p-12 w-[100%] mx-auto bg-white rounded-lg shadow-md mt-10">
       <h2 className="text-3xl lg:text-4xl font-semibold text-gray-800 text-center mb-6">
         GitHub Contributions
       </h2>
@@ -117,7 +157,11 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
             className="flex flex-col items-center justify-center bg-gray-100 p-6 rounded-md"
           >
             <p className="text-lg font-medium text-gray-700 mb-2">Last Week</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.week}</p>
+            <motion.p className="text-2xl font-semibold text-gray-900">
+              <motion.span>
+                {displayStats.week}
+              </motion.span>
+            </motion.p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +170,11 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
             className="flex flex-col items-center justify-center bg-gray-100 p-6 rounded-md"
           >
             <p className="text-lg font-medium text-gray-700 mb-2">Last Month</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.month}</p>
+            <motion.p className="text-2xl font-semibold text-gray-900">
+              <motion.span>
+                {displayStats.month}
+              </motion.span>
+            </motion.p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -135,7 +183,11 @@ const GitHubStats: React.FC<Props> = ({ username }) => {
             className="flex flex-col items-center justify-center bg-gray-100 p-6 rounded-md"
           >
             <p className="text-lg font-medium text-gray-700 mb-2">Last Year</p>
-            <p className="text-2xl font-semibold text-gray-900">{stats.year}</p>
+            <motion.p className="text-2xl font-semibold text-gray-900">
+              <motion.span>
+                {displayStats.year}
+              </motion.span>
+            </motion.p>
           </motion.div>
         </div>
       )}
