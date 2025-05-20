@@ -13,7 +13,7 @@ const Contributions = () => {
   useEffect(() => {
     const fetchPullRequests = async () => {
       const token = import.meta.env.VITE_GITHUB_TOKEN;
-      const headers = token ? { Authorization: `token ${token}` } : {};
+      const headers: HeadersInit = token ? { 'Authorization': `token ${token}` } : {};
 
       try {
         const searchResponse = await fetch('https://api.github.com/search/issues?q=author:sagarkawad+type:pr+is:merged&per_page=100', { headers });
