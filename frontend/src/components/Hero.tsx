@@ -1,11 +1,27 @@
 import { NavLink } from './navigation/NavLink';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useEffect } from 'react';
 
 const Hero = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const rotateX = useTransform(y, [-50, 50], [5, -5]);
   const rotateY = useTransform(x, [-50, 50], [-5, 5]);
+
+  useEffect(() => {
+    const handleOrientation = (event: DeviceOrientationEvent) => {
+      if (event.gamma !== null && event.beta !== null) {
+        x.set(event.gamma);
+        y.set(event.beta);
+      }
+    };
+
+    window.addEventListener('deviceorientation', handleOrientation);
+
+    return () => {
+      window.removeEventListener('deviceorientation', handleOrientation);
+    };
+  }, [x, y]);
 
   return (
     <motion.section
