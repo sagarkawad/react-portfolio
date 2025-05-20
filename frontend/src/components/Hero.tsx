@@ -10,9 +10,12 @@ const Hero = () => {
 
   useEffect(() => {
     const handleOrientation = (event: DeviceOrientationEvent) => {
-      if (event.gamma !== null && event.beta !== null) {
-        x.set(event.gamma);
-        y.set(event.beta);
+      if (event.alpha !== null && event.beta !== null && event.gamma !== null) {
+        // Map alpha, beta, gamma to x, y values
+        const newX = event.gamma * 2; // Scale gamma for x-axis
+        const newY = event.beta * 2;  // Scale beta for y-axis
+        x.set(newX);
+        y.set(newY);
       }
     };
 
