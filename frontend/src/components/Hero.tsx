@@ -43,7 +43,7 @@ const Hero = () => {
           }}
           transition={{
             duration: 6,
-            repeat: Infinity,
+            repeat: Infinity
           }}
         />
         <motion.div
@@ -55,6 +55,7 @@ const Hero = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
+            delay: 2
           }}
         />
         <motion.div
@@ -64,7 +65,7 @@ const Hero = () => {
           }}
           transition={{
             duration: 20,
-            repeat: Infinity,
+            repeat: Infinity
           }}
         />
       </div>
@@ -136,7 +137,7 @@ const Hero = () => {
                 I like to{" "}
                 <motion.span
                   className="font-semibold text-gray-800 relative inline-block"
-                  whileHover={{ scale: 1.05 }}
+              
                 >
                   build things
                   <motion.div
@@ -167,9 +168,6 @@ const Hero = () => {
                   className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
                   disableBlue={true}
                 >
-                  {/* Button background animation */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
                   {/* Button content */}
                   <span className="relative z-10 flex items-center space-x-2">
                     <span>View My Work</span>

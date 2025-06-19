@@ -13,24 +13,24 @@ const Home = () => {
       <FadeInView>
         <Hero />
       </FadeInView>
-      <FadeInView delay={0.2}>
+     
         <Experience />
-      </FadeInView>
-      <FadeInView delay={0.2}>
+  
+    
         <Skills />
-      </FadeInView>
-      <FadeInView delay={0.3}>
+     
+  
         <Projects />
-      </FadeInView>
+   
       {/* <FadeInView delay={0.3}>
         <GitHubStats username='sagarkawad' />
       </FadeInView>
       <FadeInView delay={0.4}>
         <Contributions />
       </FadeInView> */}
-      <FadeInView delay={0.5}>
+    
         <Contact />
-      </FadeInView>
+ 
     </main>
   );
 };

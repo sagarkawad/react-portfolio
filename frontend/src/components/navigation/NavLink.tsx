@@ -43,9 +43,9 @@ export const NavLink: React.FC<NavLinkProps> = ({
       className={`relative group ${className}`}
     >
       <span className="relative z-10">{children}</span>
-      {!disableBlue && (
+      {/* {!disableBlue && (
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full" />
-      )}
+      )} */}
     </Link>
   );
 };

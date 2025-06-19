@@ -103,14 +103,13 @@ const Contact = () => {
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                   >
-                    <span className="flex items-center space-x-3">
+                    {/* Animated background overlay - moved before content, pointer-events-none and z-0 added */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"></div>
+                    <span className="flex items-center space-x-3 relative z-10">
                       <Mail className="w-6 h-6" />
                       <span>Send Email</span>
                       <ArrowRight className={`w-5 h-5 transition-transform duration-300 ${isHovered ? 'translate-x-1' : ''}`} />
                     </span>
-                    
-                    {/* Animated background overlay */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </a>
                   
                   <p className="text-sm text-gray-500">

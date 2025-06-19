@@ -2,7 +2,7 @@ import React from 'react';
 import { BriefcaseIcon } from 'lucide-react';
 
 // Simple fade-in animation component
-const FadeInView = ({ children, delay = 0 }) => {
+const FadeInView: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   return (
     <div 
       className="opacity-0 animate-fade-in"
@@ -176,7 +176,7 @@ const Experience = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in {
           from {
             opacity: 0;
@@ -189,7 +189,7 @@ const Experience = () => {
         }
         
         .animate-fade-in {
-          animation: fade-in 0.6s ease-out;
+          animation: fade-in 0.6s;
         }
       `}</style>
     </section>
