@@ -1,15 +1,30 @@
-import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Github, Code, Eye, Sparkles } from 'lucide-react';
 
 const Projects = () => {
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
+
   const projects = [
+    {
+      title: "Post your SaaS",
+      description: "A platform for indie hackers to post their products. Currently in development phase and closed source. Will make it live and open-source soon.",
+      image: "https://i.pinimg.com/736x/a0/e6/d3/a0e6d34297c51272111896a1f4d2becb.jpg",
+      technologies: ["React", "Supabase", "Media Store"],
+      githubUrl: undefined,
+      liveUrl: undefined,
+      gradient: "from-blue-500 to-cyan-500",
+      bgGradient: "from-blue-50 to-cyan-50"
+    },
     {
       title: 'Perspective AI',
       description: 'A platform where you can break through the echo chambers of thought processes.',
-      image: 'https://i.pinimg.com/736x/ec/6e/0e/ec6e0e48c37584db24040141d2cadd82.jpg',
+      image: 'https://i.pinimg.com/736x/fc/1e/4b/fc1e4bf3b1d22fd8416cbd243247f619.jpg',
       technologies: ['NextJS', 'Python', 'Langchain & Langgraph', "FastAPI", 'Tailwind CSS', "OpenAI"],
       githubUrl: 'https://github.com/sagarkawad/Perspective-AI',
-
+      liveUrl: undefined,
+      gradient: "from-purple-500 to-pink-500",
+      bgGradient: "from-purple-50 to-pink-50"
     },
     // {
     //   title: 'Online Bicycle Store',
@@ -98,54 +113,146 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-16">Featured Projects</h2>
+    <section id="projects" className="py-16 bg-white relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-40 left-20 w-96 h-96 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-20 right-20 w-80 h-80 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
+
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 lg:px-12 max-w-6xl">
+          {/* Section Header */}
+          <div className="text-center mb-20">
+            <div className="inline-block p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mb-6">
+              <Sparkles className="w-8 h-8 text-blue-600" />
+            </div>
+            <h1 className="py-2 text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-2">
+              Featured Projects
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Explore my latest work showcasing innovative solutions and creative implementations
+            </p>
+          </div>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
           {projects.map((project, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-48 object-cover mb-4 rounded-md"
-              />
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech) => (
-                  <span 
-                    key={tech}
-                    className="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm"
-                  >
-                    {tech}
-                  </span>
-                ))}
+            <div 
+              key={index} 
+              className={`group relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100/50 overflow-hidden ${
+                hoveredProject === index ? 'scale-105' : ''
+              }`}
+              onMouseEnter={() => setHoveredProject(index)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {/* Image Container */}
+              <div className="relative overflow-hidden rounded-t-3xl">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Image Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                {/* Floating Action Buttons */}
+                <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110"
+                    >
+                      <Github className="w-5 h-5 text-gray-700" />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a 
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:bg-white transition-all duration-300 hover:scale-110"
+                    >
+                      <ExternalLink className="w-5 h-5 text-gray-700" />
+                    </a>
+                  )}
+                </div>
+
+                {/* Gradient Accent */}
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient}`}></div>
               </div>
-              <div className="flex space-x-4">
-                <a 
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600"
-                >
-                  <Github className="w-5 h-5 mr-2" />
-                  Code
-                </a>
-                {project.liveUrl ?  <a 
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center text-gray-600 hover:text-blue-600"
-                >
-                  <ExternalLink className="w-5 h-5 mr-2" />
-                  Live Demo
-                </a> : null}
+
+              {/* Content */}
+              <div className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                  {project.description}
+                </p>
+                
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span 
+                      key={tech}
+                      className={`px-4 py-2 bg-gradient-to-r ${project.bgGradient} text-gray-700 rounded-full text-sm font-medium border border-gray-200/50 hover:scale-105 transition-transform duration-200`}
+                      style={{
+                        animationDelay: `${techIndex * 100}ms`
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                
+                {/* Action Buttons */}
+                <div className="flex space-x-4">
+                  {project.githubUrl && (
+                    <a 
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl hover:from-gray-900 hover:to-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl group/btn"
+                    >
+                      <Code className="w-5 h-5 mr-2  transition-transform duration-300" />
+                      <span className="font-medium">Code</span>
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a 
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center px-6 py-3 bg-gradient-to-r ${project.gradient} text-white rounded-xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 group/btn`}
+                    >
+                      <Eye className="w-5 h-5 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
+                      <span className="font-medium">Live Demo</span>
+                    </a>
+                  )}
+                </div>
               </div>
+
+              {/* Hover Glow Effect */}
+              <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none`}></div>
             </div>
           ))}
         </div>
+
+        {/* Show More Projects Hint */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50">
+            <span className="text-gray-600 mr-2">More projects available on</span>
+            <Github className="w-5 h-5 text-gray-700" />
+          </div>
+        </div>
       </div>
+
+      {/* Decorative Elements */}
     </section>
   );
 };
