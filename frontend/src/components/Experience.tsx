@@ -23,8 +23,8 @@ const Experience = () => {
 
               <BriefcaseIcon className="w-8 h-8 text-blue-600"/>
             </div>
-            <h1 className="py-2 text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-2">
-            Past Work
+            <h1 className="py-2 text-3xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-2">
+            Experience
             </h1>
             <div className="w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-6"></div>
             </div>

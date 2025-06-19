@@ -153,7 +153,7 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 pt-8"
+              className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 pt-8 px-8"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}

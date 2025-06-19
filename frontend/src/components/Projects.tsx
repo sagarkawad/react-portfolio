@@ -242,11 +242,14 @@ const Projects = () => {
             <div className="inline-block p-2 md:p-3 bg-gradient-to-r from-blue-100 to-purple-100 rounded-full mb-4 md:mb-6">
               <Sparkles className="w-6 h-6 md:w-8 md:h-8 text-blue-600" />
             </div>
-            <h1 className="py-2 text-3xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-2">
+            <h1 className="py-2 text-3xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-2">
               Featured Projects
             </h1>
             <div className="w-20 md:w-32 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full mb-4 md:mb-6"></div>
-            <p className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p
+              className="text-base md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed text-balance"
+              style={{ textWrap: 'balance' }}
+            >
               Explore my latest work showcasing innovative solutions and creative implementations
             </p>
           </div>
@@ -265,7 +268,7 @@ const Projects = () => {
         {/* Show More Projects Hint */}
         <div className="text-center mt-10 md:mt-16">
           <div className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-200/50">
-            <span className="text-gray-600 mr-2 text-sm md:text-base">More projects available on</span>
+           <a href="https://github.com/sagarkawad" target="_blank" rel="noopener noreferrer"> <span className="text-gray-600 mr-2 text-sm md:text-base">More projects available on</span></a>
             <Github className="w-5 h-5 text-gray-700" />
           </div>
         </div>

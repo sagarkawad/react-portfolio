@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send, ArrowRight } from 'lucide-react';
+import { Mail, /* Phone, */ MapPin, Send, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 const Contact = () => {
@@ -20,12 +20,12 @@ const Contact = () => {
           <div className="inline-block p-2 bg-blue-100 rounded-full mb-4">
             <Mail className="w-8 h-8 text-blue-600" />
           </div>
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl lg:text-6xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-4">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
-          <p className="text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
-            Let's start a conversation about your next project
+          <p className="text-base md:text-xl text-gray-600 mt-6 max-w-2xl mx-auto">
+            Let's start a conversation about your next&nbsp;project
           </p>
         </div>
         
@@ -59,14 +59,20 @@ const Contact = () => {
                   onMouseLeave={() => setHoveredCard(null)}
                 >
                   <div className="flex items-start space-x-6">
-                    <div className={`p-4 rounded-2xl bg-gradient-to-r ${item.bgGradient} group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className={`w-8 h-8 bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`} />
+                    <div className={`flex flex-col items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${item.bgGradient} group-hover:scale-110 transition-transform duration-300`}>
+                      <item.icon className={`w-6 h-6 bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`} />
+                      {item.title === "Email" && (
+                        <Mail className="w-10 h-10 text-blue-500 mb-4" />
+                      )}
+                      {item.title === "Location" && (
+                        <MapPin className="w-10 h-10 text-purple-500 mb-4" />
+                      )}
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                    <div className="flex-1 flex flex-col justify-center">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-lg group-hover:text-gray-700 transition-colors">
+                      <p className="text-gray-600 text-sm group-hover:text-gray-700 transition-colors text-left flex items-center">
                         {item.content}
                       </p>
                     </div>
