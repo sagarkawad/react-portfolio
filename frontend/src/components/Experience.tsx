@@ -33,7 +33,7 @@ const Experience = () => {
         <div className="space-y-12 lg:space-y-16">
           {/* First Experience */}
           <FadeInView>
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-levitate transition-all duration-300 overflow-hidden transform translate-y-[-8px]">
               <div className="p-8 lg:p-12">
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8">
                   <div className="mb-6 lg:mb-0">
@@ -105,7 +105,7 @@ const Experience = () => {
 
           {/* Second Experience */}
           <FadeInView delay={0.2}>
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-levitate transition-all duration-300 overflow-hidden transform translate-y-[-8px]">
               <div className="p-8 lg:p-12">
                 <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-8">
                   <div className="mb-6 lg:mb-0">
@@ -190,6 +190,10 @@ const Experience = () => {
         
         .animate-fade-in {
           animation: fade-in 0.6s;
+        }
+        /* Custom subtle levitate shadow with top shadow */
+        .shadow-levitate {
+          box-shadow: 0 -4px 12px -6px rgba(60, 60, 130, 0.08), 0 6px 24px 0 rgba(60, 60, 130, 0.10), 0 1.5px 4px 0 rgba(60,60,130,0.06);
         }
       `}</style>
     </section>

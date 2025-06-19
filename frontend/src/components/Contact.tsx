@@ -20,7 +20,7 @@ const Contact = () => {
           <div className="inline-block p-2 bg-blue-100 rounded-full mb-4">
             <Mail className="w-8 h-8 text-blue-600" />
           </div>
-          <h2 className="text-3xl lg:text-6xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl text-3xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent mb-4">
             Get In Touch
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
@@ -93,7 +93,10 @@ const Contact = () => {
                   Ready to collaborate?
                 </h3>
                 
-                <p className="text-gray-600 mb-8 text-lg leading-relaxed">
+                <p
+                  className="text-gray-600 mb-8 text-lg leading-relaxed"
+                  style={{ wordBreak: 'keep-all', whiteSpace: 'normal' }}
+                >
                   I'm always excited to work on new projects and bring creative ideas to life. 
                   Drop me a message and let's discuss how we can work together.
                 </p>
