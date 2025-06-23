@@ -139,7 +139,7 @@ const Hero = () => {
                   className="font-semibold text-gray-800 relative inline-block"
               
                 >
-                  build things
+                  build 
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
                     initial={{ scaleX: 0 }}
@@ -147,7 +147,7 @@ const Hero = () => {
                     transition={{ delay: 1, duration: 0.8 }}
                   />
                 </motion.span>{" "}
-                with code ✨
+                with code and have worked on fullstack applications. Looking forward to work on web3 projects ✨
               </motion.p>
             </motion.div>
 
