@@ -3,14 +3,31 @@ import { useState, useMemo } from 'react';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaPython, FaDocker, FaGitAlt } from 'react-icons/fa';
 import { SiGo, SiExpress, SiMongodb, SiPostgresql, SiNextdotjs, SiTailwindcss, SiFlutter, SiSupabase, SiFirebase, SiKubernetes, SiAmazonecs, SiCloudflare, SiFastapi, SiLine, SiAmazon } from 'react-icons/si';
 
-const skillCategoriesData = [
+interface SkillCategory {
+  title: string;
+  icon: React.ComponentType<{ className?: string }>;
+  skills: string[];
+  gradient: string;
+  bgGradient: string;
+  iconBg: string;
+  iconMap: Record<string, JSX.Element>;
+}
+
+const skillCategoriesData: SkillCategory[] = [
   {
     title: 'Languages',
     icon: Code2,
     skills: ['HTML', 'CSS', 'JavaScript', 'Go', 'Python'],
     gradient: 'from-orange-500 to-red-500',
     bgGradient: 'from-orange-50 to-red-50',
-    iconBg: 'from-orange-100 to-red-100'
+    iconBg: 'from-orange-100 to-red-100',
+    iconMap: {
+      'HTML': <FaHtml5 className="w-5 h-5 text-orange-500" />,
+      'CSS': <FaCss3Alt className="w-5 h-5 text-blue-500" />,
+      'JavaScript': <FaJs className="w-5 h-5 text-yellow-400" />,
+      'Go': <SiGo className="w-5 h-5 text-cyan-700" />,
+      'Python': <FaPython className="w-5 h-5 text-blue-400" />,
+    }
   },
   {
     title: 'Frontend',
@@ -18,7 +35,12 @@ const skillCategoriesData = [
     skills: ['React', 'Next.js', 'Tailwind CSS'],
     gradient: 'from-blue-500 to-cyan-500',
     bgGradient: 'from-blue-50 to-cyan-50',
-    iconBg: 'from-blue-100 to-cyan-100'
+    iconBg: 'from-blue-100 to-cyan-100',
+    iconMap: {
+      'React': <FaReact className="w-5 h-5 text-cyan-500" />,
+      'Next.js': <SiNextdotjs className="w-5 h-5 text-gray-900" />,
+      'Tailwind CSS': <SiTailwindcss className="w-5 h-5 text-sky-400" />,
+    }
   },
   {
     title: 'Backend',
@@ -26,7 +48,12 @@ const skillCategoriesData = [
     skills: ['Node.js', 'Express.js', 'FastAPI'],
     gradient: 'from-green-500 to-emerald-500',
     bgGradient: 'from-green-50 to-emerald-50',
-    iconBg: 'from-green-100 to-emerald-100'
+    iconBg: 'from-green-100 to-emerald-100',
+    iconMap: {
+      'Node.js': <FaNodeJs className="w-5 h-5 text-green-600" />,
+      'Express.js': <SiExpress className="w-5 h-5 text-gray-700" />,
+      'FastAPI': <SiFastapi className="w-5 h-5 text-green-500" />,
+    }
   },
   {
     title: 'Databases',
@@ -34,7 +61,11 @@ const skillCategoriesData = [
     skills: ['MongoDB', 'PostgreSQL'],
     gradient: 'from-purple-500 to-indigo-500',
     bgGradient: 'from-purple-50 to-indigo-50',
-    iconBg: 'from-purple-100 to-indigo-100'
+    iconBg: 'from-purple-100 to-indigo-100',
+    iconMap: {
+      'MongoDB': <SiMongodb className="w-5 h-5 text-green-700" />,
+      'PostgreSQL': <SiPostgresql className="w-5 h-5 text-blue-700" />,
+    }
   },
   {
     title: 'Mobile Development',
@@ -42,7 +73,13 @@ const skillCategoriesData = [
     skills: ['React Native', 'Flutter', 'Supabase', 'Firebase'],
     gradient: 'from-pink-500 to-rose-500',
     bgGradient: 'from-pink-50 to-rose-50',
-    iconBg: 'from-pink-100 to-rose-100'
+    iconBg: 'from-pink-100 to-rose-100',
+    iconMap: {
+      'React Native': <FaReact className="w-5 h-5 text-cyan-500" />,
+      'Flutter': <SiFlutter className="w-5 h-5 text-sky-500" />,
+      'Supabase': <SiSupabase className="w-5 h-5 text-green-600" />,
+      'Firebase': <SiFirebase className="w-5 h-5 text-yellow-500" />,
+    }
   },
   {
     title: 'DevOps',
@@ -50,7 +87,15 @@ const skillCategoriesData = [
     skills: ['Docker', 'Kubernetes', 'EC2', 'ECS', 'CDN', 'Linode'],
     gradient: 'from-teal-500 to-cyan-500',
     bgGradient: 'from-teal-50 to-cyan-50',
-    iconBg: 'from-teal-100 to-cyan-100'
+    iconBg: 'from-teal-100 to-cyan-100',
+    iconMap: {
+      'Docker': <FaDocker className="w-5 h-5 text-blue-400" />,
+      'Kubernetes': <SiKubernetes className="w-5 h-5 text-blue-500" />,
+      'EC2': <SiAmazon className="w-5 h-5 text-orange-400" />,
+      'ECS': <SiAmazonecs className="w-5 h-5 text-orange-400" />,
+      'CDN': <SiCloudflare className="w-5 h-5 text-orange-500" />,
+      'Linode': <SiLine className="w-5 h-5 text-green-700" />,
+    }
   }
 ];
 
@@ -120,33 +165,7 @@ const Skills = () => {
                 {/* Skills List */}
                 <div className="space-y-3">
                   {category.skills.map((skill, skillIndex) => {
-                    // Map skill names to icons
-                    const skillIconMap: Record<string, JSX.Element> = {
-                      'HTML': <FaHtml5 className="w-5 h-5 text-orange-500" />, // HTML5
-                      'CSS': <FaCss3Alt className="w-5 h-5 text-blue-500" />, // CSS3
-                      'JavaScript': <FaJs className="w-5 h-5 text-yellow-400" />,
-                      'Go': <SiGo className="w-5 h-5 text-cyan-700" />,
-                      'Python': <FaPython className="w-5 h-5 text-blue-400" />,
-                      'React': <FaReact className="w-5 h-5 text-cyan-500" />,
-                      'Next.js': <SiNextdotjs className="w-5 h-5 text-gray-900" />,
-                      'Tailwind CSS': <SiTailwindcss className="w-5 h-5 text-sky-400" />,
-                      'Node.js': <FaNodeJs className="w-5 h-5 text-green-600" />,
-                      'Express.js': <SiExpress className="w-5 h-5 text-gray-700" />,
-                      'FastAPI': <SiFastapi className="w-5 h-5 text-green-500" />,
-                      'MongoDB': <SiMongodb className="w-5 h-5 text-green-700" />,
-                      'PostgreSQL': <SiPostgresql className="w-5 h-5 text-blue-700" />,
-                      'React Native': <FaReact className="w-5 h-5 text-cyan-500" />,
-                      'Flutter': <SiFlutter className="w-5 h-5 text-sky-500" />,
-                      'Supabase': <SiSupabase className="w-5 h-5 text-green-600" />,
-                      'Firebase': <SiFirebase className="w-5 h-5 text-yellow-500" />,
-                      'Docker': <FaDocker className="w-5 h-5 text-blue-400" />,
-                      'Kubernetes': <SiKubernetes className="w-5 h-5 text-blue-500" />,
-                      'EC2': <SiAmazon className="w-5 h-5 text-orange-400" />,
-                      'ECS': <SiAmazonecs className="w-5 h-5 text-orange-400" />,
-                      'CDN': <SiCloudflare className="w-5 h-5 text-orange-500" />,
-                      'Linode': <SiLine className="w-5 h-5 text-green-700" />,
-                    };
-                    const icon = skillIconMap[skill] || <FaGitAlt className="w-5 h-5 text-gray-400" />;
+                    const icon = category.iconMap[skill] || <FaGitAlt className="w-5 h-5 text-gray-400" />;
                     return (
                       <div 
                         key={skill}

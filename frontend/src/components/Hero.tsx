@@ -8,13 +8,13 @@ const Hero = () => {
   const rotateX = useTransform(y, [-100, 100], [8, -8]);
   const rotateY = useTransform(x, [-100, 100], [-8, 8]);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     x.set(e.clientX - rect.left - rect.width / 2);
     y.set(e.clientY - rect.top - rect.height / 2);
   };
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent<HTMLElement>) => {
     const touch = e.touches[0];
     const rect = e.currentTarget.getBoundingClientRect();
     x.set(touch.clientX - rect.left - rect.width / 2);
@@ -147,7 +147,10 @@ const Hero = () => {
                     transition={{ delay: 1, duration: 0.8 }}
                   />
                 </motion.span>{" "}
-                with code and have worked on fullstack applications. Looking forward to work on web3 projects ✨
+                with code and have worked on{" "}
+                <span className="whitespace-nowrap">fullstack applications.</span>{" "}
+                Looking forward to work on{" "}
+                <span className="whitespace-nowrap">web3 projects</span> ✨
               </motion.p>
             </motion.div>
 
